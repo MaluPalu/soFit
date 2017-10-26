@@ -12,11 +12,13 @@
 //
 //= require rails-ujs
 //= require jquery
-//= require materialize-sprockets
 //= require turbolinks
+//= require materialize-sprockets
+//= require highcharts
+//= require chartkick
 //= require_tree .
 
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
     $('select').material_select();
     $('.dropdown-button').dropdown({
      inDuration: 300,
@@ -29,3 +31,4 @@ $(document).ready(function() {
      stopPropagation: false // Stops event propagation
    });
   });
+  $('icon-class').on('click', 'turbolinks:load');

@@ -1,0 +1,34 @@
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+<%= link_to "Track Goal", "/goals/#{@goal.id}/tracking/new", :class => 'waves-effect waves-light btn' %>
+<table class="tracking-table">
+       <thead>
+         <tr>
+             <th>Distance</th>
+             <th>Unit of Measurement</th>
+             <% if @goal.time != nil %>
+             <th><% "Time" %></th>
+             <% end %>
+         </tr>
+       </thead>
+
+       <tbody>
+         <% @tracking.each do |t| %>
+         <tr>
+           <td><%= t.distance %></td>
+           <td><%= t.unit_of_measurement %></td>
+           <% if t.time != nil %>
+           <td><%= t.time %></td>
+           <% end %>
+           <td><%=
+                link_to material_icon.delete, "/trackings/#{t.id}",
+                method: :delete, data: { confirm: "You sure?" }, class: "icon-class"
+              %></td>
+         </tr>
+         <% end %>
+       </tbody>
+     </table>
+
+<% if @goal.time != nil %>
+<%= pie_chart @tracking.group(:time).count %>
+<% else %>
+<% end %>

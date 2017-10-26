@@ -5,15 +5,15 @@
  :class => 'dropdown-button btn', data: { activates: "#{exercise.name}" }  %>
  <!-- Dropdown Structure -->
  <ul id="<%= exercise.name %>" class='dropdown-content'>
-   <li><%= link_to "Add Post", "/#{exercise.name}/#{exercise.id}/goals/new" %></li>
+   <li><%= link_to "Add Goal", "/#{exercise.name}/#{exercise.id}/goals/new" %></li>
     <li class="divider"></li>
   <% exercise.goals.each do |goal| %>
-   <li><%= link_to goal.name, "/#{exercise.name}/#{exercise.id}/goals" %></li>
+   <li><%= link_to goal.name, "/#{exercise.name}/#{exercise.id}/goals/#{goal.id}" %></li>
    <% end %>
  </ul>
 <% end %>
 
 <%= @user.target_weight %>
 <%= @user.target_bmi %>
-<%= @user.current_weight %>
-<%= @user.current_bmi %>
+<h2 class="target-fit"><%= @user.current_weight %></h2>
+<h2 class="target-fit"><%= @user.current_bmi %></h2>

@@ -1,0 +1,45 @@
+<%= form_for [@goal, @tracking], url: "/goals/#{@goal.id}/tracking" do |f| %>
+
+<body class="red loaded">
+
+  <div class="container">
+    <div id="login-page" class="row">
+      <div class="col s8 offset-s2 z-depth-4 card-panel center-align">
+
+        <form class="login-form">
+          <div class="row">
+            <div class="input-field col s12 center">
+              <%= image_tag "fitness_imgs/sofit.png", :class=>"responsive-img valign profile-image-login" %>
+              <p class="center login-form-text">Log your Fitness</p>
+            </div>
+          </div>
+          <div class="row margin">
+            <div class="input-field col s6">
+               <select name="tracking[unit_of_measurement]">
+                 <option value="" disabled selected>Unit of Measurement</option>
+                 <option value="Meters">Meters</option>
+                 <option value="Kilometers">Kilometers</option>
+                 <option value="Miles">Miles</option>
+               </select>
+             </div>
+             <div class="input-field col s6">
+               <%= f.text_field :distance, placeholder: "Enter the distance for today's workout" %>
+               <label for="distance" class="center-align">Distance</label>
+             </div>
+             <% if @goal.time != nil %>
+             <div class="input-field col s6">
+               <%= f.text_field :time, placeholder: "Enter in Milliseconds" %>
+               <label for="title" class="center-align">Time</label>
+             </div>
+             <% end %>
+          </div>
+          <div class="row">
+            <div class="input-field col s12 center-align">
+              <%= f.submit "Today's Log", :class=> 'btn' , :id=> 'btn' %>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -18,10 +18,13 @@ Rails.application.routes.draw do
   post '/Running/:id/goals', to: 'goals#create'
   post '/Biking/:id/goals', to: 'goals#create'
   post '/Swimming/:id/goals', to: 'goals#create'
-  get '/Running/:id/goals', to: 'goals#show', as: 'Running_goal_show'
-  get '/Biking/:id/goals', to: 'goals#show', as: 'Biking_goal_show'
-  get '/Swimming/:id/goals', to: 'goals#show', as: 'Swimming_goal_show'
+  get '/Running/:id/goals/:id', to: 'goals#show', as: 'Running_goal_show'
+  get '/Biking/:id/goals/:id', to: 'goals#show', as: 'Biking_goal_show'
+  get '/Swimming/:id/goals/:id', to: 'goals#show', as: 'Swimming_goal_show'
 
+  get '/goals/:id/tracking/new', to: 'trackings#new', as: 'goal_tracking'
+  post '/goals/:id/tracking', to: 'trackings#create'
+  delete '/trackings/:id', to: 'goals#delete_tracking'
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

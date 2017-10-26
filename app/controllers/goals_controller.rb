@@ -12,6 +12,21 @@ class GoalsController < ApplicationController
     redirect_to user_path(current_user)
   end
 
+  def show
+    @goal = Goal.find_by_id(params[:id])
+    if @goal.time != nil
+      @goal.time = get_duration_hrs_and_mins(@goal.time)
+    else
+      @goal.time
+    end
+    @tracking = @goal.trackings
+  end
+
+  def delete_tracking
+    @tracking = Tracking.find_by_id(params[:id])
+    @tracking.destroy
+  end
+
   private
 
   def goal_params
