@@ -1,0 +1,52 @@
+<%= form_for [@category, @goal], url: "/#{@category.name}/#{@category.id}/goals" do |f| %>
+
+<body class="red loaded">
+
+  <div class="container">
+    <div id="login-page" class="row">
+      <div class="col s8 offset-s2 z-depth-4 card-panel center-align">
+
+        <form class="login-form">
+          <div class="row">
+            <div class="input-field col s12 center">
+              <%= image_tag "fitness_imgs/Fitness_Logs.png", :class=>"responsive-img valign profile-image-login" %>
+              <p class="center login-form-text">Create New Goal</p>
+            </div>
+          </div>
+          <div class="row margin">
+            <div class="input-field col s6">
+              <i class="material-icons prefix">title</i>
+              <%= f.text_field :name, placeholder: "What's your goal?" %>
+              <label for="name" class="center-align">Name</label>
+            </div>
+            <div class="input-field col s6">
+              <%= f.date_select :deadline, placeholder: "What's your deadline?" %>
+              <label for="deadline" class="center-align">Deadline</label>
+            </div>
+            <div class="input-field col s6">
+               <select name="goal[unit_of_measurement]">
+                 <option value="" disabled selected>Unit of Measurement</option>
+                 <option value="Seconds">Meters</option>
+                 <option value="Hour">Kilimeters</option>
+                 <option value="Minutes">Miles</option>
+               </select>
+             </div>
+             <div class="input-field col s6">
+               <%= f.text_field :distance, placeholder: "How far is your distance goal?" %>
+               <label for="distance" class="center-align">Target Distance</label>
+             </div>
+             <div class="input-field col s6">
+               <%= f.text_field :time, placeholder: "Enter in Milliseconds" %>
+               <label for="title" class="center-align">Target Time</label>
+             </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12 center-align">
+              <%= f.submit "Add Goal", :class=> 'btn' , :id=> 'btn' %>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,12 @@
+
+<%= form_for :categories do |f| %>
+<div class="input-field col s12">
+   <select name="exercise_type[]" multiple>
+     <option value="" disabled selected>Choose your Exercise</option>
+     <option value="Biking">Biking</option>
+     <option value="Swimming">Swimming</option>
+     <option value="Running">Running</option>
+   </select>
+ </div>
+<%= f.submit "Submit" %>
+<% end %>
