@@ -14,17 +14,19 @@ class GoalsController < ApplicationController
 
   def show
     @goal = Goal.find_by_id(params[:id])
-    if @goal.time != nil
-      @goal.time = get_duration_hrs_and_mins(@goal.time)
-    else
-      @goal.time
-    end
     @tracking = @goal.trackings
   end
 
   def delete_tracking
+    @category = Category.find_by_id(params[:id])
+    @goal = Goal.find_by_id(params[:id])
     @tracking = Tracking.find_by_id(params[:id])
     @tracking.destroy
+    respond_to do |format|
+      format.html { redirect_to category_goal_show_path(@category, @goal) }
+      format.json { head :no_content }
+      format.js   { render :layout => false }
+    end
   end
 
   private

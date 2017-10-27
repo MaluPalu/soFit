@@ -20,9 +20,16 @@
            <td><%= t.time %></td>
            <% end %>
            <td><%=
-                link_to material_icon.delete, "/trackings/#{t.id}",
-                method: :delete, data: { confirm: "You sure?" }, class: "icon-class"
-              %></td>
+            link_to material_icon.delete, "/trackings/#{t.id}", remote: true, "data-type" => "script",
+            method: :delete,
+            data: { confirm: "You sure?" }, :class => "trackingDel"
+            %>
+            </td>
+            <td><%=
+            link_to material_icon.edit,
+            "/goals/#{@goal.id}/tracking/#{t.id}/edit", class: "icon-class"
+            %>
+            </td>
          </tr>
          <% end %>
        </tbody>

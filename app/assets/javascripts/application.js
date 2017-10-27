@@ -18,7 +18,7 @@
 //= require chartkick
 //= require_tree .
 
-$(document).on('turbolinks:load', function() {
+document.addEventListener("turbolinks:load", function() {
     $('select').material_select();
     $('.dropdown-button').dropdown({
      inDuration: 300,

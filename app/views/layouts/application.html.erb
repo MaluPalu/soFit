@@ -2,15 +2,15 @@
 <html>
   <head>
     <title>FitnessLog</title>
-    <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= csrf_meta_tags %>
   </head>
 
   <body>
+    <%= stylesheet_link_tag %>
     <%= yield %>
-      <div><%= render 'layouts/navigation' %> </div>
+      <div><%= render 'layouts/navigation' unless @disable_nav %> </div>
     <% yield %>
   </body>
 </html>

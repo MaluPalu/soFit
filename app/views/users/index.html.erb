@@ -1,0 +1,91 @@
+
+  <body>
+
+    <div id="index-banner" class="parallax-container">
+      <div class="section no-pad-bot">
+        <div class="container">
+          <h1 class="header center red-text text-lighten-2">SoFit</h1>
+          <div class="row center">
+            <h5 class="header col s12 light">An app for social fitness!</h5>
+          </div>
+          <div class="row center">
+              <% if current_user %>
+              <%= link_to "#{'Hello, ' + current_user.username}", user_path(current_user), :class => "btn-large waves-effect waves-light red lighten-1" %>
+              <%= link_to'Log Out', destroy_user_session_path, :class => "btn-large waves-effect waves-light red lighten-1", :method=> 'delete' %>
+              <% else %>
+              <%= link_to'Sign Up', new_user_registration_path, :class => "btn-large waves-effect waves-light red lighten-1" %>
+              <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="parallax"><%= image_tag "fitness_imgs/fitness.jpeg" %></div>
+    </div>
+
+
+    <div class="container">
+      <div class="section">
+
+        <!--   Icon Section   -->
+        <div class="row">
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
+              <h5 class="center">Set Goals</h5>
+
+              <p class="light">Optimize your fitness by choosing what type of exercise you want to succeed in.</p>
+            </div>
+          </div>
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
+              <h5 class="center">User Experience Focused</h5>
+
+              <p class="light">Visualize your fitness with graphs that match your goals using our responsive tracking log.</p>
+            </div>
+          </div>
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center brown-text"><i class="material-icons">group</i></h2>
+              <h5 class="center">Social Fitness</h5>
+
+              <p class="light">Set Goals. Smash Goals. Share. SoFit gives you the option to log all facets of your health and fitness and broadcast that to the world.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="parallax-container valign-wrapper">
+      <div class="section no-pad-bot">
+        <div class="container">
+          <div class="row center">
+            <h5 class="header col s12 light">Easy. Fast. Responsive tracking to best fit your personal goals.</h5>
+          </div>
+        </div>
+      </div>
+      <div class="parallax"><%= image_tag "fitness_imgs/health.jpeg" %></div>
+    </div>
+
+    <footer class="page-footer red lighten-1">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">SoFit's Goal</h5>
+            <p class="grey-text text-lighten-4">We aim to maximize your fitness and share that with the world!</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+        © 2017 Copyright SoFit
+        </div>
+      </div>
+    </footer>
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="/assets/materialize.js"></script>
+    </body>
+  </html>

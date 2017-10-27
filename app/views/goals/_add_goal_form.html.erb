@@ -1,4 +1,4 @@
-<%= form_for [@category, @goal], url: "/#{@category.name}/#{@category.id}/goals" do |f| %>
+<%= form_for [@category, @goal], url: "/category/#{@category.id}/goals" do |f| %>
 
 <body class="red loaded">
 
@@ -13,6 +13,13 @@
               <p class="center login-form-text">Create New Goal</p>
             </div>
           </div>
+          <div class="input-field col s6">
+             <select name="goals[accumulate]">
+               <option value="" disabled selected>Accumulate</option>
+               <option value="True">Yes</option>
+               <option value="False">No</option>
+             </select>
+           </div>
           <div class="row margin">
             <div class="input-field col s6">
               <i class="material-icons prefix">title</i>

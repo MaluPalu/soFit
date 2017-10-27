@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def index
-
+    @disable_nav = true
   end
 
   def category
@@ -25,18 +25,5 @@ class UsersController < ApplicationController
     @user = current_user
     @categories = @user.categories
   end
-
-  def running
-
-  end
-
-  def swimming
-
-  end
-
-  def biking
-
-  end
-
 
 end
