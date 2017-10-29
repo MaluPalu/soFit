@@ -13,6 +13,7 @@ class GoalsController < ApplicationController
   end
 
   def show
+    @category = Category.find_by_id(params[:category_id])
     @goal = Goal.find_by_id(params[:id])
     @tracking = @goal.trackings
   end
@@ -32,7 +33,7 @@ class GoalsController < ApplicationController
   private
 
   def goal_params
-    params.require(:goal).permit(:name, :time, :unit_of_measurement, :distance, :deadline)
+    params.require(:goal).permit(:name, :time, :unit_of_measurement, :distance, :accumulate, :deadline)
   end
 
 end

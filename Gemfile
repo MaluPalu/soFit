@@ -10,6 +10,8 @@ gem 'material_icons'
 gem 'materialize-sass'
 gem 'chartkick'
 gem 'groupdate'
+gem 'carrierwave'
+
 
 
 gem 'devise'

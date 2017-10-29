@@ -24,7 +24,6 @@ class TrackingsController < ApplicationController
     redirect_to category_goal_show_path(@goal.category_id, @goal)
   end
 
-
   private
 
   def tracking_params

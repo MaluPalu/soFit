@@ -5,3 +5,32 @@
 .target-fit {
   color: #b0ff00;
 }
+
+
+#profile-page-header {
+  width: 80%;
+}
+
+#profile-page-header .card-profile-image {
+  width: 110px;
+  z-index: 1;
+  left: 40px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.follow {
+  top: 10px;
+}
+
+.light {
+  color: white;
+}
+
+.center {
+  color: white;
+}
+
+.indexicon {
+  color: #F45154;
+}

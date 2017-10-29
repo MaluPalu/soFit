@@ -6,4 +6,5 @@ class Goal < ApplicationRecord
    seconds = time / (1000)
    Time.at(seconds).strftime("%H:%M:%S") + '.' + (time % 1000).to_s
  end
+
 end

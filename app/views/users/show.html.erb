@@ -1,20 +1,38 @@
+<%= render 'navigation' %>
 
-<% @categories.each do |exercise| %>
-<!-- Dropdown Trigger -->
- <%= link_to exercise.name, "/category/#{exercise.id}",
- :class => 'dropdown-button btn red lighten-1', data: { activates: "#{exercise.name}" }  %>
- <!-- Dropdown Structure -->
- <ul id="<%= exercise.name %>" class='dropdown-content'>
-   <li><%= link_to "Add Goal", "/category/#{exercise.id}/goals/new" %></li>
-    <li class="divider"></li>
-  <% exercise.goals.each do |goal| %>
-   <li><%= link_to goal.name, "/category/#{exercise.id}/goals/#{goal.id}" %></li>
+<ul id="slide-out" class="side-nav">
+   <li><div class="user-view">
+     <div class="background">
+       <img src="http://www.misucell.com/data/out/10/IMG_373670.gif" id="prof_back">
+     </div>
+     <%= link_to image_tag(@user.picture_url.to_s, :class=>"circle"), user_path(@user)%>
+     <h5> <%= @user.name %> </h5>
+     <h5> <%= @user.username %> </h5>
+   </div></li>
+   <li><div class="divider"></div></li>
+   <li><a class="subheader">Exercises</a></li>
+   <% @categories.each do |exercise| %>
+   <!-- Dropdown Trigger -->
+    <%= link_to exercise.name, "/category/#{exercise.id}",
+    :class => 'dropdown-button btn red lighten-1', data: { activates: "#{exercise.name}" }  %>
+    <!-- Dropdown Structure -->
+    <ul id="<%= exercise.name %>" class='dropdown-content'>
+      <li><%= link_to "Add Goal", "/category/#{exercise.id}/goals/new" %></li>
+       <li class="divider"></li>
+     <% exercise.goals.each do |goal| %>
+      <li><%= link_to goal.name, "/category/#{exercise.id}/goals/#{goal.id}" %></li>
+      <% end %>
+    </ul>
    <% end %>
  </ul>
-<% end %>
+ <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
 
-
-<h2 class="target-fit"><%= @user.current_weight %></h2>
-<h2 class="target-fit"><%= @user.current_bmi %></h2>
-<h4 class="target-fit"><%= @user.target_weight %></h4>
-<h4 class="target-fit"><%= @user.target_bmi %></h4>
+  <% if current_user && !same_as_current_user? %>
+    <% if following_user? %>
+      <%= link_to "Unfollow", follow_user_path(@user, type: "unfollow"),
+      :class=> "btn waves-effect orange", method: :put %>
+    <% else %>
+      <%= link_to "Follow", follow_user_path(@user, type: "follow"),
+      :class=> "btn waves-effect orange", method: :put %>
+    <% end %>
+  <% end %>

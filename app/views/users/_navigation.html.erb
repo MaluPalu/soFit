@@ -1,0 +1,26 @@
+
+<div class="navbar-fixed">
+
+  <nav>
+    <div class="nav-wrapper row red lighten-1">
+      <div class="col s4">
+        <a href="<%=root_path%>">  <img class="brand-logo" src="<%= image_path "fitness_imgs/sofit.png" %>" style="height: 100%; padding-left: 20px"> </a>
+      </div>
+
+      <div >
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <% if current_user %>
+        <li><%= link_to material_icon.portrait, user_path(current_user) %></li>
+        <li><%= link_to material_icon.exit_to_app, destroy_user_session_path, :method=> 'delete' %></li>
+        <% else %>
+        <li><%= link_to 'Sign In', new_user_session_path %></li>
+        <li><%= link_to'Sign Up', new_user_registration_path%></li>
+        <% end %>
+      </ul>
+    </div>
+
+
+
+    </div>
+  </nav>
+</div>

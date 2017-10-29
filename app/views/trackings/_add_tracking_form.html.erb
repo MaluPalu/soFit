@@ -26,7 +26,7 @@
                <%= f.text_field :distance, placeholder: "Enter the distance for today's workout" %>
                <label for="distance" class="center-align">Distance</label>
              </div>
-             <% if @goal.time != nil %>
+             <% if @goal.accumulate == false %>
              <div class="input-field col s6">
                <%= f.text_field :time, placeholder: "Enter in Milliseconds" %>
                <label for="title" class="center-align">Time</label>
@@ -43,3 +43,14 @@
     </div>
   </div>
 <% end %>
+
+<style>
+body {
+  background: url("/assets/fitness_imgs/trackfit.jpeg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+.row {
+  opacity: 0.92;
+}
+</style>

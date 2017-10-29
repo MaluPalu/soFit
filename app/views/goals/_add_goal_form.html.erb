@@ -1,6 +1,6 @@
 <%= form_for [@category, @goal], url: "/category/#{@category.id}/goals" do |f| %>
 
-<body class="red loaded">
+<body class="loaded">
 
   <div class="container">
     <div id="login-page" class="row">
@@ -13,20 +13,20 @@
               <p class="center login-form-text">Create New Goal</p>
             </div>
           </div>
-          <div class="input-field col s6">
-             <select name="goals[accumulate]">
-               <option value="" disabled selected>Accumulate</option>
-               <option value="True">Yes</option>
-               <option value="False">No</option>
-             </select>
-           </div>
           <div class="row margin">
+            <div class="input-field col s5">
+               <select name="goal[accumulate]">
+                 <option value="" disabled selected>Type</option>
+                 <option value="true">Accumulation</option>
+                 <option value="false">Distance/Time</option>
+               </select>
+               <label for="name" class="center-align">What type of goal do you wish to track?</label>
+             </div>
             <div class="input-field col s6">
-              <i class="material-icons prefix">title</i>
               <%= f.text_field :name, placeholder: "What's your goal?" %>
               <label for="name" class="center-align">Name</label>
             </div>
-            <div class="input-field col s6">
+            <div class="input-field col s5">
               <%= f.date_select :deadline, placeholder: "What's your deadline?" %>
               <label for="deadline" class="center-align">Deadline</label>
             </div>
@@ -43,6 +43,7 @@
                <label for="distance" class="center-align">Target Distance</label>
              </div>
              <div class="input-field col s6">
+               <i class="material-icons prefix tooltipped" data-position="bottom" data-delay="50" data-tooltip="Only fill this section out if you are setting a Time/Distance goal">format_align_justify</i>
                <%= f.text_field :time, placeholder: "Enter in Milliseconds" %>
                <label for="title" class="center-align">Target Time</label>
              </div>
@@ -57,3 +58,14 @@
     </div>
   </div>
 <% end %>
+
+<style>
+body {
+  background: url("/assets/fitness_imgs/backfit.jpeg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+.row {
+  opacity: 0.92;
+}
+</style>

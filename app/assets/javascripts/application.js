@@ -20,6 +20,8 @@
 
 document.addEventListener("turbolinks:load", function() {
     $('select').material_select();
+    $(".button-collapse").sideNav();
+    $('.modal-trigger').leanModal();
     $('.dropdown-button').dropdown({
      inDuration: 300,
      outDuration: 225,

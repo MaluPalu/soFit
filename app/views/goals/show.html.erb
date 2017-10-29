@@ -1,41 +1,65 @@
-<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
-<%= link_to "Track Goal", "/goals/#{@goal.id}/tracking/new", :class => 'waves-effect waves-light btn' %>
-<table class="tracking-table">
-       <thead>
-         <tr>
-             <th>Distance</th>
-             <th>Unit of Measurement</th>
-             <% if @goal.time != nil %>
-             <th><% "Time" %></th>
-             <% end %>
-         </tr>
-       </thead>
+<%= render 'navigation' %>
+<!-- Navbar goes here -->
+<div class="moveRight">
+<%= link_to "Track Goal", "/goals/#{@goal.id}/tracking/new",
+:class => 'waves-effect waves-light btn' %>
+<%= link_to "Graph My", "#", :class => 'dropdown-button btn red pulse lighten-1',
+data: { activates: "graphing" }  %>
+<ul id="graphing" class='dropdown-content'>
+  <li><%= link_to "Stats", display_stats_path, :class => "graph" %></li>
+  <li><%= link_to "Average", display_average_path, :class => "graph" %></li>
+</ul>
+</div>
+<!-- Page Layout here -->
+<div class="row">
+    <h2><%= @goal.name %></h2>
+    <div class="col s3">
+      <table class="tracking-table">
+        <thead>
+          <tr>
+            <th>Distance</th>
+            <th>Unit of Measurement</th>
+            <% if @goal.accumulate == false %>
+              <th><%= "Time" %></th>
+            <% end %>
+          </tr>
+        </thead>
 
-       <tbody>
-         <% @tracking.each do |t| %>
-         <tr>
-           <td><%= t.distance %></td>
-           <td><%= t.unit_of_measurement %></td>
-           <% if t.time != nil %>
-           <td><%= t.time %></td>
-           <% end %>
-           <td><%=
-            link_to material_icon.delete, "/trackings/#{t.id}", remote: true, "data-type" => "script",
-            method: :delete,
-            data: { confirm: "You sure?" }, :class => "trackingDel"
-            %>
-            </td>
-            <td><%=
-            link_to material_icon.edit,
-            "/goals/#{@goal.id}/tracking/#{t.id}/edit", class: "icon-class"
-            %>
-            </td>
-         </tr>
-         <% end %>
-       </tbody>
-     </table>
+        <tbody>
+          <% @tracking.each do |t| %>
+            <tr>
+              <td><%= t.distance %></td>
+              <td><%= t.unit_of_measurement %></td>
+              <% if t.time != nil %>
+                <td><%= t.time %></td>
+                <% end %>
+                <td><%=
+                  link_to material_icon.delete, "/trackings/#{t.id}", remote: true, "data-type" => "script",
+                  method: :delete,
+                  data: { confirm: "You sure?" }, :class => "trackingDel"
+                  %>
+                </td>
+                <td><%=
+                  link_to material_icon.edit,
+                  "/goals/#{@goal.id}/tracking/#{t.id}/edit", class: "icon-class"
+                  %>
+                </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
 
-<% if @goal.time != nil %>
-<%= pie_chart @tracking.group(:time).count %>
-<% else %>
-<% end %>
+    <div class="col s7">
+      <% if request.original_url =~ /^.*\/stats$/ %>
+        <%= pie_chart @tracking.group([:time]).count, library: {chart: {backgroundColor: "#2A2928"}} %>
+      <% elsif request.original_url =~ /^.*\/average$/ %>
+        <%= area_chart @tracking.group(:created_at).maximum(:distance) %>
+      <% end %>
+    </div>
+</div>
+
+
+
+
+<div id="graphStats"></div>
