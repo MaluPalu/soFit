@@ -1,4 +1,9 @@
 <%= render 'navigation' %>
+
+<% if flash[:notice] %>
+  <%= javascript_tag "Materialize.toast(`#{ flash[:notice]}`, 4000, 'rounded')", :class=> 'toast-style'%>
+<% end %>
+
 <!-- Navbar goes here -->
 <div class="moveRight">
   <% if current_user == User.find_by_id(@goal.category.user_id) %>
@@ -54,6 +59,17 @@ data: { activates: "graphing" }  %>
         </table>
       </div>
 
+    <% if @goal.accumulate != false %>
+    <div class="col s7">
+      <% if request.original_url =~ /^.*\/stats$/ %>
+        <h3>Stats</h3>
+        <%= line_chart @tracking.group(:distance).sum(:time), library: {chart: {backgroundColor: "transparent"}} %>
+      <% elsif request.original_url =~ /^.*\/average$/ %>
+        <h3>Average</h3>
+        <%= column_chart @tracking.group_by_day_of_week(:created_at, format: "%a").maximum(:distance), library: {chart: {backgroundColor: "transparent"}} %>
+      <% end %>
+    </div>
+    <% else %>
     <div class="col s7">
       <% if request.original_url =~ /^.*\/stats$/ %>
         <h3>Stats</h3>
@@ -63,6 +79,17 @@ data: { activates: "graphing" }  %>
         <%= area_chart @tracking.group_by_second(:created_at).maximum(:time), library: {chart: {backgroundColor: "transparent"}} %>
       <% end %>
     </div>
+    <% end %>
+</div>
+
+<div class="col s7">
+  <div id="quote-1"><h2 class="quote">“You miss 100% of the shots you don’t take.” –Esther Weone(probably)</h2></div>
+  <div id="quote-2"><h2 class="quote">"Today I will do what others won’t, so tomorrow I can accomplish what others can’t.” - Jerry Rice</h2></div>
+  <div id="quote-3"><h2 class="quote">“We are what we repeatedly do. Excellence then is not an act but a habit.” —Aristotle</h2></div>
+  <div id="quote-4"><h2 class="quote">“No matter how slow you go, you are still lapping everybody on the couch.”</h2></div>
+  <div id="quote-5"><h2 class="quote">“If you want something you’ve never had, you must be willing to do something you’ve never done.” —Thomas Jefferson</h2></div>
+  <div id="quote-6"><h2 class="quote">“To give anything less than your best is to sacrifice the gift.” —Steve Prefontaine</h2></div>
+  <div id="quote-7"><h2 class="quote">“Life begins at the end of your comfort zone.” </h2></div>
 </div>
 
 
@@ -71,6 +98,11 @@ data: { activates: "graphing" }  %>
 body {
   background: url("/assets/fitness_imgs/bikefit.jpeg") no-repeat center center fixed;
   background-size: cover;
+}
+
+.quote {
+  font-family: 'Lobster Two', cursive;
+  color: white;
 }
 
 .tracking-table {

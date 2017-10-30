@@ -25,7 +25,6 @@ class TrackingsController < ApplicationController
 
   def create
     @tracking = Tracking.create(tracking_params)
-    @tracking.distance = 
     @goal.trackings << @tracking
     redirect_to category_goal_show_path(@goal.category_id, @goal)
   end

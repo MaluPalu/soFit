@@ -9,10 +9,13 @@ class GoalsController < ApplicationController
 
   def create
     @goal = Goal.create(goal_params)
-    @goal.time = time_string(@goal.time)
+    if @goal.accumulate != true
+      @goal.time = time_string(@goal.time)
+    else
     @category.goals << @goal
     redirect_to user_path(current_user)
   end
+end
 
   def show
     @category = Category.find_by_id(params[:category_id])

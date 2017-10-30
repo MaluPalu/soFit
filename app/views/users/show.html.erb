@@ -5,13 +5,14 @@
   <% end %>
 
 <ul id="slide-out" class="side-nav">
+
    <li><div class="user-view">
      <div class="background">
        <img src="http://static1.squarespace.com/static/573a1afaf8baf3cb61850e22/t/573a95f7b09f95b67526c2b1/1491961947454/?format=1500w" id="prof_back">
      </div>
      <%= link_to image_tag(@user.picture_url.to_s, :class=>"circle"), user_path(@user)%>
      <h5> <%= @user.name %> </h5>
-     <h5> <%= @user.username %> </h5>
+     <h5 class="username"> <%= @user.username %> </h5>
    </div></li>
    <li><div class="divider"></div></li>
    <li><a class="subheader">Exercises</a></li>
@@ -41,17 +42,19 @@
     <% end %>
   <% end %>
 
-
+  <% if current_user == User.find_by_id(params[:id]) %>
   <% @trackings.each do |t| %>
   <div class="row">
    <div class="col s12 m3">
      <div class="card-panel white">
        <div class="post col s3">
-       <span class="black-text">
+       <span class="black-text"></span>
+       <%= link_to image_tag(t.goal.category.user.picture_url.to_s, :class=>"profile_image circle"), user_path(t.goal.category.user_id)%>
+         <p>
          <% if t.goal.accumulate != false || t.goal.time === nil %>
-          <%= t.goal.category.user.name + switch(t.goal.category.name) + t.distance.to_s + " " + t.unit_of_measurement %>
+          <%= t.goal.category.user.name + switch(t.goal.category.name) + t.distance.to_s + t.unit_of_measurement.downcase %>
          <% else %>
-          <%= t.goal.category.user.name + switch(t.goal.category.name) + t.distance.to_s + t.unit_of_measurement + "in" + t.time.to_s %> <br>
+          <%= t.goal.category.user.name + switch(t.goal.category.name) + t.distance.to_s + " " + t.unit_of_measurement.downcase + "in" + t.time.to_s %><br>
          <% end %>
          <% if current_user %>
           <% if !liked_tracking?(t) %>
@@ -61,11 +64,11 @@
             <%= link_to material_icon.thumb_down, like_tracking_path(t, type: "unlike"),
               :class=> "material-icons fav", method: :put %>
           <% end %>
-        <% end %>
-       </span>
+        <% end %></p>
      </div>
    </div>
  </div>
+<% end %>
 <% end %>
 
 <style>
@@ -73,6 +76,10 @@
 .card-panel {
   opacity: .2;
   height: 200px;
+}
+
+.profile_image {
+  width: 100%;
 }
 
 h5 {

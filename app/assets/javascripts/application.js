@@ -19,6 +19,18 @@
 //= require_tree .
 
 document.addEventListener("turbolinks:load", function() {
+    var divs = $('div[id^="quote-"]').hide(),
+      i = 0;
+
+      (function cycle() {
+
+      divs.eq(i).fadeIn(400)
+                .delay(5000)
+                .fadeOut(400, cycle);
+
+      i = ++i % divs.length;
+
+    })();
     $('select').material_select();
     $(".button-collapse").sideNav();
     $('.dropdown-button').dropdown({

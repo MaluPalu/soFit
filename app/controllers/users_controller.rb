@@ -47,7 +47,7 @@ class UsersController < ApplicationController
 
   def show
     @categories = @user.categories
-    @trackings = Tracking.all
+    @trackings = Tracking.all.sort_by(&:created_at).reverse[0..10]
   end
 
   private

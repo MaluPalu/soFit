@@ -19,8 +19,8 @@ module UsersHelper
     Time.at(seconds).strftime("%H:%M:%S") + '.' + (time % 1000).to_s
   end
 
-  def switch(name)
-     case name
+  def switch(category)
+     case category
      when "Swimming"
        "swam"
      when "Biking"
