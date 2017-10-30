@@ -4,16 +4,18 @@
     <div id="index-banner" class="parallax-container">
       <div class="section no-pad-bot">
         <div class="container">
-          <h1 class="header center red-text text-lighten-2">SoFit</h1>
+          <h1 class="header center black-text">So</h1>
+          <h1 class="header center cyan-text">Fit</h1>
+
           <div class="row center">
             <h5 class="header col s12 light">An app for social fitness!</h5>
           </div>
           <div class="row center">
               <% if current_user %>
-              <%= link_to "#{'Hello, ' + current_user.username}", user_path(current_user), :class => "btn-large waves-effect waves-light red lighten-1" %>
-              <%= link_to'Log Out', destroy_user_session_path, :class => "btn-large waves-effect waves-light red lighten-1", :method=> 'delete' %>
+              <%= link_to "#{'Hello, ' + current_user.username}", user_path(current_user), :class => "btn-large waves-effect waves-light cyan lighten-1" %>
+              <%= link_to'Log Out', destroy_user_session_path, :class => "btn-large waves-effect waves-light cyan lighten-1", :method=> 'delete' %>
               <% else %>
-              <%= link_to'Sign Up', new_user_registration_path, :class => "btn-large waves-effect waves-light red lighten-1" %>
+              <%= link_to'Sign Up', new_user_registration_path, :class => "btn-large waves-effect waves-light cyan lighten-1" %>
               <% end %>
           </div>
         </div>
@@ -68,7 +70,7 @@
       <div class="parallax"><%= image_tag "fitness_imgs/health.jpeg" %></div>
     </div>
 
-    <footer class="page-footer red lighten-1">
+    <footer class="page-footer cyan lighten-1">
       <div class="container">
         <div class="row">
           <div class="col l6 s12">
@@ -89,3 +91,10 @@
     <script src="/assets/materialize.js"></script>
     </body>
   </html>
+
+  <style>
+  h1 {
+    display: inline;
+    line-height: 317%;
+  }
+  </style>

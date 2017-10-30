@@ -7,7 +7,7 @@
 <ul id="slide-out" class="side-nav">
    <li><div class="user-view">
      <div class="background">
-       <img src="http://www.blythefamilyfitness.org/wp-content/uploads/2013/06/background1.jpg" id="prof_back">
+       <img src="http://static1.squarespace.com/static/573a1afaf8baf3cb61850e22/t/573a95f7b09f95b67526c2b1/1491961947454/?format=1500w" id="prof_back">
      </div>
      <%= link_to image_tag(@user.picture_url.to_s, :class=>"circle"), user_path(@user)%>
      <h5> <%= @user.name %> </h5>
@@ -18,7 +18,7 @@
    <% @categories.each do |exercise| %>
    <!-- Dropdown Trigger -->
     <%= link_to exercise.name, "/category/#{exercise.id}",
-    :class => 'dropdown-button btn red lighten-1', data: { activates: "#{exercise.name}" }  %>
+    :class => 'dropdown-button btn cyan lighten-1', data: { activates: "#{exercise.name}" }  %>
     <!-- Dropdown Structure -->
     <ul id="<%= exercise.name %>" class='dropdown-content'>
       <li><%= link_to "Add Goal", "/category/#{exercise.id}/goals/new" %></li>
@@ -41,18 +41,17 @@
     <% end %>
   <% end %>
 
-  <% @goals.each do |g| %>
-  <% @users.each do |u| %>
+
   <% @trackings.each do |t| %>
   <div class="row">
    <div class="col s12 m3">
-     <div class="card-panel red lighten-1">
-       <div class="col s2">
-       <span class="white-text">
-         <% if g.accumulate == true || g.time == nil %>
-          <%= u.name + " ran " + t.distance.to_s + t.unit_of_measurement + "s"%> <br>
+     <div class="card-panel white">
+       <div class="post col s3">
+       <span class="black-text">
+         <% if t.goal.accumulate != false || t.goal.time === nil %>
+          <%= t.goal.category.user.name + switch(t.goal.category.name) + t.distance.to_s + " " + t.unit_of_measurement %>
          <% else %>
-          <%= u.name + " ran " + t.distance.to_s + t.unit_of_measurement + "s" + " in " + t.time.to_s %> <br>
+          <%= t.goal.category.user.name + switch(t.goal.category.name) + t.distance.to_s + t.unit_of_measurement + "in" + t.time.to_s %> <br>
          <% end %>
          <% if current_user %>
           <% if !liked_tracking?(t) %>
@@ -68,5 +67,15 @@
    </div>
  </div>
 <% end %>
-<% end %>
-<% end %>
+
+<style>
+
+.card-panel {
+  opacity: .2;
+  height: 200px;
+}
+
+h5 {
+  color: black;
+}
+</style>

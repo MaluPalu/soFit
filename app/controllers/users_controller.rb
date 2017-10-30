@@ -46,8 +46,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @goals = Goal.all
-    @users = User.all
     @categories = @user.categories
     @trackings = Tracking.all
   end

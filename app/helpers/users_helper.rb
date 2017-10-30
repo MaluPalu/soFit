@@ -10,8 +10,26 @@ module UsersHelper
   end
 
   def liked_tracking?(track)
-    like_arr = current_user.likes.map { |x| x.id }
+    like_arr = current_user.likes.map { |x| x.tracking_id }
     like_arr.include?(track.id)
+  end
+
+  def time_string(time)
+    seconds = time / (1000)
+    Time.at(seconds).strftime("%H:%M:%S") + '.' + (time % 1000).to_s
+  end
+
+  def switch(name)
+     case name
+     when "Swimming"
+       "swam"
+     when "Biking"
+       "biked"
+     when "Running"
+       "ran"
+     else
+       "did"
+     end
   end
 
 end

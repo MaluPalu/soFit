@@ -1,9 +1,11 @@
 <%= render 'navigation' %>
 <!-- Navbar goes here -->
 <div class="moveRight">
+  <% if current_user == User.find_by_id(@goal.category.user_id) %>
 <%= link_to "Track Goal", "/goals/#{@goal.id}/tracking/new",
-:class => 'waves-effect waves-light btn' %>
-<%= link_to "Graph My", "#", :class => 'dropdown-button btn red pulse lighten-1',
+:class => 'waves-effect waves-light btn black lighten-1' %>
+<% end %>
+<%= link_to "Graph My", "#", :class => 'dropdown-button btn black pulse lighten-1',
 data: { activates: "graphing" }  %>
 <ul id="graphing" class='dropdown-content'>
   <li><%= link_to "Stats", display_stats_path, :class => "graph" %></li>
@@ -33,6 +35,7 @@ data: { activates: "graphing" }  %>
               <% if t.time != nil %>
                 <td><%= t.time %></td>
                 <% end %>
+                <% if current_user == User.find_by_id(t.goal.category.user_id) %>
                 <td><%=
                   link_to material_icon.delete, "/trackings/#{t.id}", remote: true, "data-type" => "script",
                   method: :delete,
@@ -46,15 +49,18 @@ data: { activates: "graphing" }  %>
                 </td>
             </tr>
             <% end %>
+            <% end %>
           </tbody>
         </table>
       </div>
 
     <div class="col s7">
       <% if request.original_url =~ /^.*\/stats$/ %>
-        <%= pie_chart @tracking.group([:time]).count, library: {chart: {backgroundColor: "transparent"}} %>
+        <h3>Stats</h3>
+        <%= line_chart @tracking.group(:distance).sum(:time), library: {chart: {backgroundColor: "transparent"}} %>
       <% elsif request.original_url =~ /^.*\/average$/ %>
-        <%= area_chart @tracking.group_by_minute(:created_at).maximum(:time), library: {chart: {backgroundColor: "transparent"}} %>
+        <h3>Average</h3>
+        <%= area_chart @tracking.group_by_second(:created_at).maximum(:time), library: {chart: {backgroundColor: "transparent"}} %>
       <% end %>
     </div>
 </div>
@@ -65,5 +71,9 @@ data: { activates: "graphing" }  %>
 body {
   background: url("/assets/fitness_imgs/bikefit.jpeg") no-repeat center center fixed;
   background-size: cover;
+}
+
+.tracking-table {
+  max-width: 100%;
 }
 </style>
