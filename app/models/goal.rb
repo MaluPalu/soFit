@@ -1,6 +1,6 @@
 class Goal < ApplicationRecord
   belongs_to :category, optional: true
-  has_many :trackings
+  has_many :trackings, dependent: :destroy
 
  def time_string
    seconds = time / (1000)

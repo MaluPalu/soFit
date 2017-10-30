@@ -8,5 +8,10 @@ module UsersHelper
   def same_as_current_user?
     current_user == User.find_by_id(params[:id])
   end
-  
+
+  def liked_tracking?(track)
+    like_arr = current_user.likes.map { |x| x.id }
+    like_arr.include?(track.id)
+  end
+
 end

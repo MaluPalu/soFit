@@ -1,5 +1,11 @@
 class User < ApplicationRecord
   has_many :categories
+
+
+  has_many :likes
+  has_many :liked, through: :likes, source: :tracking
+
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

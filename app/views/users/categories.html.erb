@@ -1,6 +1,6 @@
 
 <%= form_for :categories do |f| %>
-<div class="input-field col s12">
+<div class="input-field">
    <select name="exercise_type[]" multiple>
      <option value="" disabled selected>Choose your Exercise</option>
      <option value="Biking">Biking</option>
@@ -8,5 +8,36 @@
      <option value="Running">Running</option>
    </select>
  </div>
-<%= f.submit "Submit" %>
+<%= f.submit "Submit", :class => "waves-effect waves-light btn red lighten-1"%>
 <% end %>
+<style>
+body {
+  background: url("/assets/fitness_imgs/ripfit.jpeg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+.input-field {
+  opacity: 0.82;
+  color: white;
+  position:fixed;
+  top: 50%;
+  left: 50%;
+  width:30em;
+  height: 89px;
+  margin-top: -9em; /*set to a negative number 1/2 of your height*/
+  margin-left: -15em; /*set to a negative number 1/2 of your width*/
+  border: 3px solid #ccc;
+  z-index: 2;
+}
+
+.waves-effect {
+  opacity: 0.82;
+  position:fixed;
+  top: 63%;
+  left: 75%;
+  margin-top: -9em; /*set to a negative number 1/2 of your height*/
+  margin-left: -15em; /*set to a negative number 1/2 of your width*/
+}
+
+
+</style>

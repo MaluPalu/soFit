@@ -20,14 +20,14 @@ Rails.application.routes.draw do
   get '/category/:category_id/goals/:id/stats', to: 'goals#show', as: 'display_stats'
   get '/category/:category_id/goals/:id/average', to: 'goals#show', as: 'display_average'
 
-
-
   get '/goals/:id/tracking/new', to: 'trackings#new', as: 'goal_tracking'
   post '/goals/:id/tracking', to: 'trackings#create'
   delete '/trackings/:id', to: 'goals#delete_tracking'
   get 'goals/:goal_id/tracking/:id/edit', to: 'trackings#edit', as: 'edit_tracking'
   patch 'goals/:goal_id/tracking/:id', to: 'trackings#update'
 
-
+  resources :trackings, :only => [:new] do
+    put :like, on: :member
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

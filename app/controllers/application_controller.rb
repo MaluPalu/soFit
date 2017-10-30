@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   include UsersHelper
 
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys:  [:name, :username, :picture,
        :target_weight, :target_bmi, :current_weight, :current_bmi])

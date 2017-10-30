@@ -52,14 +52,18 @@ data: { activates: "graphing" }  %>
 
     <div class="col s7">
       <% if request.original_url =~ /^.*\/stats$/ %>
-        <%= pie_chart @tracking.group([:time]).count, library: {chart: {backgroundColor: "#2A2928"}} %>
+        <%= pie_chart @tracking.group([:time]).count, library: {chart: {backgroundColor: "transparent"}} %>
       <% elsif request.original_url =~ /^.*\/average$/ %>
-        <%= area_chart @tracking.group(:created_at).maximum(:distance) %>
+        <%= area_chart @tracking.group_by_minute(:created_at).maximum(:time), library: {chart: {backgroundColor: "transparent"}} %>
       <% end %>
     </div>
 </div>
 
 
 
-
-<div id="graphStats"></div>
+<style>
+body {
+  background: url("/assets/fitness_imgs/bikefit.jpeg") no-repeat center center fixed;
+  background-size: cover;
+}
+</style>

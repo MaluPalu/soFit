@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
+  before_action :get_user, except: [:index]
 
   def index
-    @disable_nav = true
   end
 
   def category
@@ -18,7 +18,6 @@ class UsersController < ApplicationController
   end
 
   def follow
-    @user = User.find_by_id(params[:id])
     type = params[:type]
     if type == "follow" && !following_user?
       @user.followers << current_user
@@ -47,8 +46,16 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by_id(params[:id])
+    @goals = Goal.all
+    @users = User.all
     @categories = @user.categories
+    @trackings = Tracking.all
+  end
+
+  private
+
+  def get_user
+    @user = User.find_by_id(params[:id])
   end
 
 end
