@@ -11,7 +11,7 @@ gem 'materialize-sass'
 gem 'chartkick'
 gem 'groupdate'
 gem 'carrierwave'
-
+gem 'rails_12factor'
 
 
 gem 'devise'
