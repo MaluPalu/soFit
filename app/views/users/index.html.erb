@@ -15,6 +15,7 @@
               <%= link_to "#{'Hello, ' + current_user.username}", user_path(current_user), :class => "btn-large waves-effect waves-light cyan lighten-1" %>
               <%= link_to'Log Out', destroy_user_session_path, :class => "btn-large waves-effect waves-light cyan lighten-1", :method=> 'delete' %>
               <% else %>
+              <%= link_to 'Log In', new_user_session_path, :class => "btn-large waves-effect waves-light cyan lighten-1" %>
               <%= link_to'Sign Up', new_user_registration_path, :class => "btn-large waves-effect waves-light cyan lighten-1" %>
               <% end %>
           </div>
