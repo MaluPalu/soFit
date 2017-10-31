@@ -12,6 +12,7 @@ gem 'chartkick'
 gem 'groupdate'
 gem 'carrierwave'
 gem 'rails_12factor'
+gem 'momentjs-rails'
 
 
 gem 'devise'

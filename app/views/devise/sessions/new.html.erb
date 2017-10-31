@@ -1,26 +1,47 @@
-<h2>Log in</h2>
-
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+<%= javascript_tag "Materialize.toast(`#{ devise_error_messages!}`, 8000, 'rounded')", :class=> 'toast-style'%>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+<body class="cyan loaded">
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="container">
+  <div id="login-page" class="row">
+    <div class="col s6 offset-s3 z-depth-4 card-panel center-align">
+      <form class="login-form">
+        <div class="row">
+          <div class="input-field col s12 center">
+            <%= image_tag "fitness_imgs/sofit.png", :class=>"responsive-img valign profile-image-login" %>
+            <p class="center login-form-text">SoFit Log In</p>
+          </div>
+        </div>
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">email</i>
+              <%= f.email_field :email, autocomplete: "off"%>
+            <label for="email" class="center-align">Email</label>
+          </div>
+        </div>
+        <div class="row margin">
+          <div class="input-field col s12">
+               <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %><br /><i class="material-icons prefix">lock</i>
+                <%= f.password_field :password, autocomplete: "off" %>
+            <label for="Password" class="center-align">Password</label>
+          </div>
+        </div>
+        <div class="row">
+        <% if devise_mapping.rememberable? -%>
+          <div class="input-field col s12 login-text">
+              <%= f.check_box :remember_me %>
+              <label for="remember-me">Remember me</label>
+          </div>
+          <% end -%>
+        </div>
+        <div class="actions">
+          <%= f.submit "Log in" %>
+        </div>
+        </form>
+      </div>
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>

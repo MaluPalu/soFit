@@ -18,7 +18,7 @@
    <li><a class="subheader">Exercises</a></li>
    <% @categories.each do |exercise| %>
    <!-- Dropdown Trigger -->
-    <%= link_to exercise.name, "/category/#{exercise.id}",
+    <%= link_to exercise.name, "#",
     :class => 'dropdown-button btn cyan lighten-1', data: { activates: "#{exercise.name}" }  %>
     <!-- Dropdown Structure -->
     <ul id="<%= exercise.name %>" class='dropdown-content'>

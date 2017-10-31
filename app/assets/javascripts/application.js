@@ -11,8 +11,12 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require TimeSpan-1.2
 //= require jquery
 //= require turbolinks
+//= require moment
+//= require inputmask
+//= require inputmask.date.extensions
 //= require materialize-sprockets
 //= require highcharts
 //= require chartkick
@@ -42,6 +46,22 @@ document.addEventListener("turbolinks:load", function() {
      belowOrigin: true, // Displays dropdown below the button
      alignment: 'left', // Displays dropdown with edge aligned to the left of button
      stopPropagation: false // Stops event propagation
+   });
+   var milli = $('.milliTime');
+   var im = new Inputmask('datetime', {
+     mask: "99:99:99.999",
+     placeholder: "hh:mm:ss.MMM"
+   });
+   im.mask(milli);
+   $('.new_goal').on("submit", function(e){
+     var timeString = $('.milliTime');
+     var newTime = moment.duration(timeString.val()).asMilliseconds()
+     $('.hiddenTime').val(newTime)
+   });
+   $('.new_tracking').on("submit", function(e){
+     var timeString = $('.milliTime');
+     var newTime = moment.duration(timeString.val()).asMilliseconds()
+     $('.hiddenTime').val(newTime)
    });
   });
   $('icon-class').on('click', 'turbolinks:load');

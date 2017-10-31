@@ -6,7 +6,7 @@
     <div id="login-page" class="row">
       <div class="col s8 offset-s2 z-depth-4 card-panel center-align">
 
-        <form class="login-form">
+        <form class="time-form">
           <div class="row">
             <div class="input-field col s12 center">
               <%= image_tag "fitness_imgs/sofit.png", :class=>"responsive-img valign profile-image-login" %>
@@ -28,8 +28,10 @@
              </div>
              <% if @goal.accumulate == false %>
              <div class="input-field col s6">
-               <%= f.text_field :time, placeholder: "Enter in Milliseconds" %>
-               <label for="title" class="center-align">Time</label>
+               <i class="material-icons prefix tooltipped" data-position="right" data-delay="50" data-tooltip="Make sure to fill every unit youre not using with zeroes. ie: 00:21:00:122">format_align_justify</i>
+               <%= f.text_field :time, placeholder: "Time", :name => "niceString", :class => "milliTime" %>
+               <%= f.hidden_field :time, :name => "tracking[time]", :class => "hiddenTime"%>
+               <label for="time" class="center-align">Time</label>
              </div>
              <% end %>
           </div>

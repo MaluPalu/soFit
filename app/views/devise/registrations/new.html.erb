@@ -2,7 +2,7 @@
 
   <%= javascript_tag "Materialize.toast(`#{ devise_error_messages!}`, 8000, 'rounded')", :class=> 'toast-style'%>
 
-<body class="red loaded">
+<body class="cyan loaded">
 
 <div class="container">
   <div id="login-page" class="row">
@@ -103,7 +103,7 @@
           <div class="input-field col s12">
             Already have an account?
            <%- if controller_name != 'sessions' %>
-             <%= link_to "Log in", new_session_path(resource_name) %><br />
+             <%= link_to "Log in", new_session_path(resource_name), :class => "btn waves-effect orange" %><br />
             <% end -%>
           </div>
           </div>

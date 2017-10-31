@@ -3,7 +3,6 @@ Rails.application.routes.draw do
 
   root to: 'users#index'
 
-
   resources :users do
     put :follow, on: :member
   end

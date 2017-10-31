@@ -55,7 +55,7 @@ class TrackingsController < ApplicationController
 
   def check_current_user
     @goal = Goal.find_by_id(params[:goal_id])
-    if current_user != User.find_by_id(@goal.category_id)
+    if current_user != User.find_by_id(@goal.category.user_id)
       redirect_to root_path
     end
   end
