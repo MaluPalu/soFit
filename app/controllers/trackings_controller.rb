@@ -14,12 +14,12 @@ class TrackingsController < ApplicationController
 
     if type == "like" && !liked_tracking?(@tracking)
       current_user.liked << @tracking
-      redirect_to user_path(current_user), notice: 'You liked that post'
+      redirect_to user_feed_path(current_user), notice: 'You liked that post'
     elsif type == "unlike" && liked_tracking?(@tracking)
       current_user.liked.delete(@tracking)
-      redirect_to user_path(current_user), notice: 'Unliked that post'
+      redirect_to user_feed_path(current_user), notice: 'Unliked that post'
     else
-      redirect_to user_path(current_user), notice: 'Nothing happened.'
+      redirect_to user_feed_path(current_user), notice: 'Nothing happened.'
     end
   end
 
