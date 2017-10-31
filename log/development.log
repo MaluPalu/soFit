@@ -48107,3 +48107,48 @@ Completed 200 OK in 378ms (Views: 372.7ms | ActiveRecord: 1.4ms)
   [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
   [1m[36mCategory Load (0.8ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" ORDER BY "categories"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
   [1m[36mGoal Load (0.7ms)[0m  [1m[34mSELECT  "goals".* FROM "goals" ORDER BY "goals"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTracking Load (2.7ms)[0m  [1m[34mSELECT  "trackings".* FROM "trackings" ORDER BY "trackings"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTracking Load (0.3ms)[0m  [1m[34mSELECT  "trackings".* FROM "trackings" WHERE "trackings"."id" = $1 LIMIT $2[0m  [["id", 82], ["LIMIT", 11]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTracking Load (0.4ms)[0m  [1m[34mSELECT  "trackings".* FROM "trackings" ORDER BY "trackings"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[31mDELETE FROM "trackings" WHERE "trackings"."id" = $1[0m  [["id", 83]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTracking Load (1.3ms)[0m  [1m[34mSELECT  "trackings".* FROM "trackings" ORDER BY "trackings"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "trackings" WHERE "trackings"."id" = $1[0m  [["id", 82]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTracking Load (0.5ms)[0m  [1m[34mSELECT  "trackings".* FROM "trackings" ORDER BY "trackings"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "trackings" WHERE "trackings"."id" = $1[0m  [["id", 81]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTracking Load (0.5ms)[0m  [1m[34mSELECT  "trackings".* FROM "trackings" ORDER BY "trackings"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "trackings" WHERE "trackings"."id" = $1[0m  [["id", 80]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTracking Load (0.4ms)[0m  [1m[34mSELECT  "trackings".* FROM "trackings" ORDER BY "trackings"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "trackings" WHERE "trackings"."id" = $1[0m  [["id", 79]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTracking Load (0.4ms)[0m  [1m[34mSELECT  "trackings".* FROM "trackings" ORDER BY "trackings"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "trackings" WHERE "trackings"."id" = $1[0m  [["id", 78]]
+  [1m[35m (34.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTracking Load (1.2ms)[0m  [1m[34mSELECT  "trackings".* FROM "trackings" ORDER BY "trackings"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "trackings" WHERE "trackings"."id" = $1[0m  [["id", 77]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTracking Load (0.3ms)[0m  [1m[34mSELECT  "trackings".* FROM "trackings" ORDER BY "trackings"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "trackings" WHERE "trackings"."id" = $1[0m  [["id", 75]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTracking Load (1.2ms)[0m  [1m[34mSELECT  "trackings".* FROM "trackings" ORDER BY "trackings"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "trackings" WHERE "trackings"."id" = $1[0m  [["id", 65]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTracking Load (1.2ms)[0m  [1m[34mSELECT  "trackings".* FROM "trackings" ORDER BY "trackings"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "trackings" WHERE "trackings"."id" = $1[0m  [["id", 63]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTracking Load (0.3ms)[0m  [1m[34mSELECT  "trackings".* FROM "trackings" WHERE "trackings"."goal_id" IS NULL LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "trackings" WHERE "trackings"."goal_id" IS NULL[0m

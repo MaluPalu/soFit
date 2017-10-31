@@ -24,7 +24,15 @@ class TrackingsController < ApplicationController
   end
 
   def create
+    @goal = Goal.find_by_id(params[:id])
     @tracking = Tracking.create(tracking_params)
+    if @tracking.unit_of_measurement == nil
+      redirect_to goal_tracking_new_path(@goal), notice: "Fill out unit of measurement field" and return
+    elsif @tracking.time == 0
+      redirect_to goal_tracking_new_path(@goal), notice: "Fill out time field correctly" and return
+    elsif @tracking.distance == nil
+      redirect_to goal_tracking_new_path(@goal), notice: "Fill out distance field" and return
+    end
     @goal.trackings << @tracking
     redirect_to category_goal_show_path(@goal.category_id, @goal)
   end
