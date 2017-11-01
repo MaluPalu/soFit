@@ -63,5 +63,25 @@ document.addEventListener("turbolinks:load", function() {
      var newTime = moment.duration(timeString.val()).asMilliseconds()
      $('.hiddenTime').val(newTime)
    });
+   var chart = Chartkick.charts["chart-1"];
+   chart.setOptions({
+     library:{
+       chart: {
+         backgroundColor: "transparent"
+       },
+       xAxis: {
+         type: 'datetime', max: chart.getOptions().library.xAxis.max
+       },
+        yAxis: {
+          min: goalTime,
+           labels: {
+              formatter: function(){
+                // setting dummy date to trick moment into treating our duration like a date so we can format correctly
+                return moment('2000-01-01 00:00:00').add(moment.duration(this.value)).format('HH:mm:ss.SSS');
+            }
+          }
+        }
+      }
+    });
   });
   $('icon-class').on('click', 'turbolinks:load');

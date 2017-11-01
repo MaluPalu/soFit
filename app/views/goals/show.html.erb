@@ -38,7 +38,7 @@ data: { activates: "graphing" }  %>
               <td><%= t.distance %></td>
               <td><%= t.unit_of_measurement %></td>
               <% if t.time != nil %>
-                <td><%= t.time %></td>
+                <td><%= time_string(t.time) %></td>
                 <% end %>
                 <% if current_user == User.find_by_id(t.goal.category.user_id) %>
                 <td><%=
@@ -63,33 +63,32 @@ data: { activates: "graphing" }  %>
     <div class="col s7">
       <% if request.original_url =~ /^.*\/stats$/ %>
         <h3>Stats</h3>
-        <%= bar_chart @tracking.group(:unit_of_measurement).sum(:distance), colors: ["cyan"], :library => {chart: {backgroundColor: "transparent", :isStacked => true}} %>
+        <%= bar_chart @tracking.group(:unit_of_measurement).sum(:distance), colors: ["cyan"], :library => { chart: { backgroundColor: "transparent", :isStacked => true}} %>
       <% elsif request.original_url =~ /^.*\/average$/ %>
         <h3>Average</h3>
-        <%= column_chart @tracking.group_by_day(:created_at).sum(:distance), colors: ["cyan"], library: {chart: {backgroundColor: "transparent"}} %>
+        <%= column_chart @tracking.group_by_day(:created_at).sum(:distance), colors: ["cyan"], library: { chart: { backgroundColor: "transparent"}} %>
       <% end %>
     </div>
     <% else %>
     <div class="col s7">
       <% if request.original_url =~ /^.*\/stats$/ %>
         <h3>Stats</h3>
-        <%= line_chart @tracking.group_by_day(:created_at, series: false).average(:time), xtitle: "Distance", ytitle: "Time", colors: ["cyan"], library: {chart: {backgroundColor: "transparent"}} %>
+        <%= line_chart @tracking.group_by_day(:created_at, series: false).average(:time), colors: ["cyan"], library: { xAxis: { type: 'datetime', max: @goal.deadline.to_date.strftime('%Q')}} %>
       <% elsif request.original_url =~ /^.*\/average$/ %>
         <h3>Average</h3>
-        <%= area_chart @tracking.group_by_second(:created_at).average(:time), colors: ["cyan"], library: {chart: {backgroundColor: "transparent"}} %>
+        <%= area_chart @tracking.group_by_day(:created_at).select(:distance).average(:time), colors: ["cyan"], library: {chart: {backgroundColor: "transparent"}} %>
       <% end %>
     </div>
     <% end %>
 </div>
-
 <div class="quote-grp">
-  <div id="quote-1"><h2 class="quote">“You miss 100% of the shots you don’t take.” –Esther Weon(probably)</h2></div>
-  <div id="quote-2"><h2 class="quote">"Today I will do what others won’t, so tomorrow I can accomplish what others can’t.” - Jerry Rice</h2></div>
-  <div id="quote-3"><h2 class="quote">“We are what we repeatedly do. Excellence then is not an act but a habit.” —Aristotle</h2></div>
-  <div id="quote-4"><h2 class="quote">“No matter how slow you go, you are still lapping everybody on the couch.”</h2></div>
-  <div id="quote-5"><h2 class="quote">“If you want something you’ve never had, you must be willing to do something you’ve never done.” —Thomas Jefferson</h2></div>
-  <div id="quote-6"><h2 class="quote">“To give anything less than your best is to sacrifice the gift.” —Steve Prefontaine</h2></div>
-  <div id="quote-7"><h2 class="quote">“Life begins at the end of your comfort zone.” </h2></div>
+  <div id="quote-1"><h3 class="quote">“You miss 100% of the shots you don’t take.” –Esther Weon(probably)</h3></div>
+  <div id="quote-2"><h3 class="quote">"Today I will do what others won’t, so tomorrow I can accomplish what others can’t.” - Jerry Rice</h3></div>
+  <div id="quote-3"><h3 class="quote">“We are what we repeatedly do. Excellence then is not an act but a habit.” —Aristotle</h3></div>
+  <div id="quote-4"><h3 class="quote">“No matter how slow you go, you are still lapping everybody on the couch.”</h3></div>
+  <div id="quote-5"><h3 class="quote">“If you want something you’ve never had, you must be willing to do something you’ve never done.” —Thomas Jefferson</h3></div>
+  <div id="quote-6"><h3 class="quote">“To give anything less than your best is to sacrifice the gift.” —Steve Prefontaine</h3></div>
+  <div id="quote-7"><h3 class="quote">“Life begins at the end of your comfort zone.” </h3></div>
 </div>
 
 
@@ -111,3 +110,6 @@ body {
   max-width: 100%;
 }
 </style>
+<script>
+  var goalTime = '<%= @goal.time %>';
+</script>

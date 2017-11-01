@@ -8,7 +8,7 @@ end
 gem 'jquery-rails'
 gem 'material_icons'
 gem 'materialize-sass'
-gem 'chartkick'
+gem 'chartkick', '~> 2.2.5'
 gem 'groupdate'
 gem 'carrierwave'
 gem 'rails_12factor'
