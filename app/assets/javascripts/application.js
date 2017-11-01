@@ -23,6 +23,7 @@
 //= require_tree .
 
 document.addEventListener("turbolinks:load", function() {
+   $('.parallax').parallax();
     var divs = $('div[id^="quote-"]').hide(),
       i = 0;
 
@@ -84,5 +85,6 @@ document.addEventListener("turbolinks:load", function() {
         }
       }
     });
+
   });
   $('icon-class').on('click', 'turbolinks:load');
