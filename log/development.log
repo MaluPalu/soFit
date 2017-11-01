@@ -48152,3 +48152,9 @@ Completed 200 OK in 378ms (Views: 372.7ms | ActiveRecord: 1.4ms)
   [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
   [1m[36mTracking Load (0.3ms)[0m  [1m[34mSELECT  "trackings".* FROM "trackings" WHERE "trackings"."goal_id" IS NULL LIMIT $1[0m  [["LIMIT", 11]]
   [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "trackings" WHERE "trackings"."goal_id" IS NULL[0m
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTracking Load (0.9ms)[0m  [1m[34mSELECT  "trackings".* FROM "trackings" INNER JOIN "likes" ON "trackings"."id" = "likes"."tracking_id" WHERE "likes"."user_id" = $1 LIMIT $2[0m  [["user_id", 25], ["LIMIT", 11]]
+  [1m[36mTracking Load (0.4ms)[0m  [1m[34mSELECT  "trackings".* FROM "trackings" ORDER BY "trackings"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT  "likes".* FROM "likes" WHERE "likes"."tracking_id" = $1 LIMIT $2[0m  [["tracking_id", 85], ["LIMIT", 11]]
+  [1m[36mTracking Load (1.6ms)[0m  [1m[34mSELECT  "trackings".* FROM "trackings" ORDER BY "trackings"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mLike Load (0.4ms)[0m  [1m[34mSELECT  "likes".* FROM "likes" WHERE "likes"."tracking_id" = $1 LIMIT $2[0m  [["tracking_id", 85], ["LIMIT", 11]]

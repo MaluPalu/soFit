@@ -16,7 +16,7 @@ module UsersHelper
 
   def time_string(time)
     seconds = time / (1000)
-    Time.at(seconds).strftime("%H:%M:%S") + '.' + (time % 1000).to_s
+    Time.at(seconds).strftime("%M:%S") + '.' + (time % 1000).to_s
   end
 
   def switch(category)
