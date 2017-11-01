@@ -63,20 +63,20 @@ data: { activates: "graphing" }  %>
     <div class="col s7">
       <% if request.original_url =~ /^.*\/stats$/ %>
         <h3>Stats</h3>
-        <%= line_chart @tracking.group(:distance).sum(:time), library: {chart: {backgroundColor: "transparent"}} %>
+        <%= bar_chart @tracking.group(:unit_of_measurement).sum(:distance), colors: ["cyan"], :library => {chart: {backgroundColor: "transparent", :isStacked => true}} %>
       <% elsif request.original_url =~ /^.*\/average$/ %>
         <h3>Average</h3>
-        <%= column_chart @tracking.group_by_day_of_week(:created_at, format: "%a").maximum(:distance), library: {chart: {backgroundColor: "transparent"}} %>
+        <%= column_chart @tracking.group_by_day(:created_at).sum(:distance), colors: ["cyan"], library: {chart: {backgroundColor: "transparent"}} %>
       <% end %>
     </div>
     <% else %>
     <div class="col s7">
       <% if request.original_url =~ /^.*\/stats$/ %>
         <h3>Stats</h3>
-        <%= line_chart @tracking.group(:distance).sum(:time), library: {chart: {backgroundColor: "transparent"}} %>
+        <%= line_chart @tracking.group_by_day(:created_at, series: false).average(:time), xtitle: "Distance", ytitle: "Time", colors: ["cyan"], library: {chart: {backgroundColor: "transparent"}} %>
       <% elsif request.original_url =~ /^.*\/average$/ %>
         <h3>Average</h3>
-        <%= area_chart @tracking.group_by_second(:created_at).maximum(:time), library: {chart: {backgroundColor: "transparent"}} %>
+        <%= area_chart @tracking.group_by_second(:created_at).average(:time), colors: ["cyan"], library: {chart: {backgroundColor: "transparent"}} %>
       <% end %>
     </div>
     <% end %>

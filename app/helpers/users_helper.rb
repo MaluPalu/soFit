@@ -16,6 +16,7 @@ module UsersHelper
 
   def time_string(time)
     seconds = time / (1000)
+    # range: @tracking.order('created_at').first.created_at..@goal.deadline
     Time.at(seconds).strftime("%M:%S") + '.' + (time % 1000).to_s
   end
 
