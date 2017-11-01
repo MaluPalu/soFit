@@ -73,7 +73,7 @@ data: { activates: "graphing" }  %>
     <div class="col s7">
       <% if request.original_url =~ /^.*\/stats$/ %>
         <h3>Stats</h3>
-        <%= line_chart @tracking.group_by_day(:created_at, series: false).average(:time), colors: ["cyan"], library: { xAxis: { type: 'datetime', max: @goal.deadline.to_date.strftime('%Q')}} %>
+        <%= line_chart @tracking.group_by_day(:created_at, series: false).average(:time), library: { xAxis: { type: 'datetime', max: @goal.deadline.to_date.strftime('%Q')}} %>
       <% elsif request.original_url =~ /^.*\/average$/ %>
         <h3>Average</h3>
         <%= area_chart @tracking.group_by_day(:created_at).select(:distance).average(:time), colors: ["cyan"], library: {chart: {backgroundColor: "transparent"}} %>

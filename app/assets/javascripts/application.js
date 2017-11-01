@@ -55,16 +55,17 @@ document.addEventListener("turbolinks:load", function() {
    im.mask(milli);
    $('.new_goal').on("submit", function(e){
      var timeString = $('.milliTime');
-     var newTime = moment.duration(timeString.val()).asMilliseconds()
+     var newTime = moment.duration(timeString.val()).asMilliseconds();
      $('.hiddenTime').val(newTime)
    });
    $('.new_tracking').on("submit", function(e){
      var timeString = $('.milliTime');
-     var newTime = moment.duration(timeString.val()).asMilliseconds()
+     var newTime = moment.duration(timeString.val()).asMilliseconds();
      $('.hiddenTime').val(newTime)
    });
    var chart = Chartkick.charts["chart-1"];
    chart.setOptions({
+     colors: ["cyan"],
      library:{
        chart: {
          backgroundColor: "transparent"
