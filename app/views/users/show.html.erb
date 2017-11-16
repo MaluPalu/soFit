@@ -4,8 +4,8 @@
   <%= javascript_tag "Materialize.toast(`#{ flash[:notice]}`, 4000, 'rounded')", :class=> 'toast-style'%>
 <% end %>
 
-<ul id="slide-out" class="side-nav">
 
+<ul id="slide-out" class="side-nav">
    <li><div class="user-view">
      <div class="background">
        <img src="http://static1.squarespace.com/static/573a1afaf8baf3cb61850e22/t/573a95f7b09f95b67526c2b1/1491961947454/?format=1500w" id="prof_back">
@@ -30,7 +30,8 @@
     </ul>
    <% end %>
  </ul>
- <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+ <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">chevron_right</i></a>   
+ 
 
   <% if current_user && !same_as_current_user? %>
     <% if following_user? %>
@@ -41,11 +42,62 @@
       :class=> "btn waves-effect orange", method: :put %>
     <% end %>
   <% end %>
-  
+
+  <% if current_user && same_as_current_user? %>
+  <% @trackings.each do |t| %>
+         <div class="col s4 offset-s3 m4 feed-card">
+           <div class="card blue-grey darken-1">
+             <div class="card-content white-text">
+               <span class="card-title"><%= link_to image_tag(t.goal.category.user.picture_url.to_s,
+               :class=>"profile_image circle"), user_path(t.goal.category.user_id)%></span>
+               <p>
+               <% if t.goal.accumulate != false || t.goal.time === nil %>
+                <%= (t.goal.category.user.name + " " + switch(t.goal.category.name) + " " + t.distance.to_s + "<br />" + t.unit_of_measurement.downcase).html_safe %>
+               <% else %>
+                <%= (t.goal.category.user.name + " " +  switch(t.goal.category.name) + " " +   t.distance.to_s + "<br />" + t.unit_of_measurement.downcase + " in " + time_string(t.time)).html_safe %><br>
+               <% end %>
+             </p>
+             </div>
+             <div class="card-action">
+              <% if current_user %>
+                <% if !liked_tracking?(t) %>
+                  <%= link_to material_icon.thumb_up, like_tracking_path(t, type: "like"),
+                    :class=> "material-icons fav", method: :put %>
+                <% else %>
+                  <%= link_to material_icon.thumb_down, like_tracking_path(t, type: "unlike"),
+                    :class=> "material-icons fav", method: :put %>
+                <% end %>
+              <% end %>
+              <p class="like-counter"><%= t.likes.count %></p>
+           </div>
+         </div>
+       </div>
+     <% end %>
+    <% end %>
+
+  <div class="quote-grp">
+      <div id="quote-1"><h3 class="quote">“You miss 100% of the shots you don’t take.” –Esther Weon(probably)</h3></div>
+      <div id="quote-2"><h3 class="quote">"Today I will do what others won’t, so tomorrow I can accomplish what others can’t.” - Jerry Rice</h3></div>
+      <div id="quote-3"><h3 class="quote">“We are what we repeatedly do. Excellence then is not an act but a habit.” —Aristotle</h3></div>
+      <div id="quote-4"><h3 class="quote">“No matter how slow you go, you are still lapping everybody on the couch.”</h3></div>
+      <div id="quote-5"><h3 class="quote">“If you want something you’ve never had, you must be willing to do something you’ve never done.” —Thomas Jefferson</h3></div>
+      <div id="quote-6"><h3 class="quote">“To give anything less than your best is to sacrifice the gift.” —Steve Prefontaine</h3></div>
+      <div id="quote-7"><h3 class="quote">“Life begins at the end of your comfort zone.” </h3></div>
+    </div>
+
 <style>
 
 .side-nav {
+  margin-top: 65px;
   width: 31%;
+}
+
+.quote-grp {
+  font-family: 'Lobster Two', cursive;
+  color: white;
+  position: absolute;
+  bottom: 0;
+  margin-left: 31%;
 }
 
 body {
@@ -55,5 +107,30 @@ body {
 
 h5 {
   color: black;
+}
+
+.button-collapse {
+  top: 213px;
+  position: relative;
+}
+.feed-card {
+  width: 200px;
+  display: inline-block;
+}
+  
+p {
+  white-space: nowrap;
+}
+
+.card {
+  opacity: .82;
+}
+
+.like-counter {
+  color: orange;
+}
+
+.profile_image {
+  width: 40%;
 }
 </style>

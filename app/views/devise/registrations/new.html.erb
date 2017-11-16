@@ -52,7 +52,7 @@
           </div>
         </div>
         <div class="row margin">
-          <div class="input-field col s12">
+          <div class="input-field col s12 inputIcon">
             <i class="material-icons prefix">lock</i>
              <%= f.password_field :password_confirmation, autocomplete: "off" %>
             <label for="password_confirmation">Password Confirmation</label>
@@ -112,3 +112,15 @@
     </div>
   </div>
 <% end %>
+
+<style>
+
+.field_with_errors {
+  text-align: initial !important;
+}
+
+.inputIcon {
+  text-align: initial !important;
+}
+
+</style>

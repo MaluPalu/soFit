@@ -46,11 +46,11 @@ class UsersController < ApplicationController
   end
 
   def feed
-    @trackings = Tracking.all.sort_by(&:created_at).reverse[0..11]
   end
 
   def show
     @categories = @user.categories
+    @trackings = Tracking.all.sort_by(&:created_at).reverse[0..11]    
   end
 
   private

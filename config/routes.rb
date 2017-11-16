@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   get '/category/:id', to: 'users#running', as: 'user_Running'
   get '/users/:id/followings', to: 'users#followings', as: 'user_followings'
   get '/users/:id/followers', to: 'users#followers', as: 'user_followers'
-  get '/users/:id/feed', to: 'users#feed', as: 'user_feed'
 
   get '/category/:id/goals/new', to: 'goals#new', as: 'category_goal'
   post '/category/:id/goals', to: 'goals#create'

@@ -23,7 +23,9 @@ default: &default
 
 development:
   <<: *default
-  database: fitnessLog_development
+  database: fitnessLog_db
+  username: fitnesslog_user
+  password: sofitpw
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -32,7 +34,7 @@ development:
   #username: fitnessLog
 
   # The password associated with the postgres role (username).
-  #password:
+  #password: 
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have

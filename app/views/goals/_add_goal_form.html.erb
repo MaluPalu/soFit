@@ -41,17 +41,15 @@
                <label for="distance" class="center-align">Target Distance</label>
              </div>
              <div class="input-field col s6">
-               <i class="material-icons prefix tooltipped" data-position="bottom" data-delay="50" data-tooltip="Only fill this section out if you are setting a Time/Distance goal">format_align_justify</i>
+               <i class="material-icons prefix tooltipped" data-position="bottom" data-delay="50" data-tooltip="Only fill this section out if you are setting a Time/Distance goal">info</i>
                <%= f.text_field :time, :name => "niceTime", :class => "milliTime" %>
                <%= f.hidden_field :time, :name => "goal[time]", :class => "hiddenTime"%>
                <label for="title" class="center-align"></label>
              </div>
           </div>
-          <div class="row">
-            <div class="input-field col s12 center-align">
-              <%= f.submit "Add Goal", :class=> 'btn black' , :id=> 'btn' %>
+            <div class="subinput-field">
+              <%= f.submit "Add Goal", :class=> 'btn black submitter' , :id=> 'btn' %>
             </div>
-          </div>
       </div>
     </div>
   </div>
@@ -65,5 +63,9 @@ body {
 
 .row {
   opacity: 0.92;
+}
+
+.submitter {
+  margin-bottom: 10px;
 }
 </style>
