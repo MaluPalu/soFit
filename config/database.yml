@@ -82,6 +82,6 @@ test:
 #
 production:
   <<: *default
-  database: fitnessLog_production
-  username: fitnessLog
-  password: <%= ENV['FITNESSLOG_DATABASE_PASSWORD'] %>
+  database: sofit
+  username: sofit
+  password: 50f1t
