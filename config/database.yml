@@ -82,6 +82,8 @@ test:
 #
 production:
   <<: *default
-  database: sofit
-  username: sofit
-  password: 50f1t
+  database: sofit_database_production
+  username: projectsporks
+  password: projectsporks1234!
+  host:     projectsporks.cxbr5yw7swjn.us-east-1.rds.amazonaws.com
+  port:     5432;

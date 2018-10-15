@@ -1,1 +1,0 @@
-"undefined"==typeof jQuery&&("function"==typeof require?jQuery=$=require("jquery"):jQuery=$);
